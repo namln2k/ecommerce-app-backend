@@ -1,5 +1,4 @@
 $kind: http-request
-name: Hello World!
 url: "{{BaseUrl}}"
 method: GET
-order: 1782199212362
+order: 1000
