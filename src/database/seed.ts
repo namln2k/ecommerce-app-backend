@@ -1,5 +1,8 @@
 import AppDataSource from './data-source';
 
+const customerPasswordHash = '$2b$10$dZAaPnOiEZMHeBQiWYdxeOzIfkAo2EVINoICpOZZosM8VtNM7kFSe';
+const adminPasswordHash = '$2b$10$mlH1vNaEV6F9o5i4EzFO9OYUieUKUFRXNRXOPIcVcglMjRLYxYDdm';
+
 async function seed(): Promise<void> {
   await AppDataSource.initialize();
 
@@ -7,12 +10,29 @@ async function seed(): Promise<void> {
     await AppDataSource.transaction(async (manager) => {
       await manager.query(
         `
-          INSERT INTO "users" ("id", "name", "email")
-          VALUES ($1, $2, $3)
+          INSERT INTO "users" ("id", "name", "email", "password_hash", "role")
+          VALUES
+            ($1, $2, $3, $4, $5),
+            ($6, $7, $8, $9, $10)
           ON CONFLICT ("email") DO UPDATE
-          SET "name" = EXCLUDED."name", "updated_at" = now()
+          SET
+            "name" = EXCLUDED."name",
+            "password_hash" = EXCLUDED."password_hash",
+            "role" = EXCLUDED."role",
+            "updated_at" = now()
         `,
-        ['11111111-1111-1111-1111-111111111111', 'Demo Customer', 'customer@example.com'],
+        [
+          '11111111-1111-1111-1111-111111111111',
+          'Demo Customer',
+          'customer@example.com',
+          customerPasswordHash,
+          'customer',
+          '55555555-5555-5555-5555-555555555555',
+          'Demo Admin',
+          'admin@example.com',
+          adminPasswordHash,
+          'admin',
+        ],
       );
 
       await manager.query(

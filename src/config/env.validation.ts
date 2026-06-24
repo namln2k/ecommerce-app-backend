@@ -27,6 +27,14 @@ class EnvironmentVariables {
 
   @IsString()
   @IsOptional()
+  JWT_REFRESH_SECRET?: string;
+
+  @IsString()
+  @IsOptional()
+  JWT_REFRESH_EXPIRES_IN?: string;
+
+  @IsString()
+  @IsOptional()
   REDIS_URL?: string;
 }
 

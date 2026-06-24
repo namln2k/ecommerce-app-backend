@@ -10,6 +10,7 @@ import { OrdersModule } from './orders/orders.module';
 import { StockModule } from './stock/stock.module';
 import databaseConfig from './config/database.config';
 import jwtConfig from './config/jwt.config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import jwtConfig from './config/jwt.config';
       }),
     }),
     UsersModule,
+    AuthModule,
     ProductsModule,
     StockModule,
     OrdersModule,

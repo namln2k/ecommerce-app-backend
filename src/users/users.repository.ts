@@ -40,7 +40,15 @@ export class UsersRepository {
     return this.repository.findOne({ where: { id } });
   }
 
+  findByEmail(email: string): Promise<User | null> {
+    return this.repository.findOne({ where: { email } });
+  }
+
   save(user: User): Promise<User> {
     return this.repository.save(user);
+  }
+
+  create(user: Partial<User>): User {
+    return this.repository.create(user);
   }
 }

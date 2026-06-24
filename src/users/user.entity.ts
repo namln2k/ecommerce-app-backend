@@ -1,5 +1,11 @@
+import { Exclude } from 'class-transformer';
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { Order } from '../orders/order.entity';
+
+export enum UserRole {
+  Admin = 'admin',
+  Customer = 'customer',
+}
 
 @Entity({ name: 'users' })
 export class User {
@@ -11,6 +17,17 @@ export class User {
 
   @Column({ type: 'varchar', length: 255, unique: true })
   email!: string;
+
+  @Exclude()
+  @Column({ name: 'password_hash', type: 'text' })
+  passwordHash!: string;
+
+  @Column({ type: 'enum', enum: UserRole, default: UserRole.Customer })
+  role!: UserRole;
+
+  @Exclude()
+  @Column({ name: 'refresh_token_hash', type: 'text', nullable: true })
+  refreshTokenHash!: string | null;
 
   @OneToMany(() => Order, (order) => order.user)
   orders!: Order[];
