@@ -1,0 +1,6 @@
+$kind: http-request
+name: Get By Id
+url: "{{BaseUrl}}/products/22222222-2222-2222-2222-222222222222"
+method: GET
+order: 1001
+

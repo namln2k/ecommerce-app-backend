@@ -1,0 +1,6 @@
+$kind: http-request
+name: Get By SKU
+url: "{{BaseUrl}}/products/sku/BAG-001"
+method: GET
+order: 1002
+

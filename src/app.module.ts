@@ -32,15 +32,6 @@ import { AuthModule } from './auth/auth.module';
       useFactory: async (redis: ConfigType<typeof redisConfig>) => {
         const redisUrl = new URL(redis.url);
 
-        console.log('Redis URL:', redisUrl.href);
-        console.log('Redis Hostname:', redisUrl.hostname);
-        console.log('Redis Port:', redisUrl.port);
-        console.log('Redis Username:', redisUrl.username);
-        console.log('Redis Password:', redisUrl.password);
-        console.log('Redis Pathname:', redisUrl.pathname);
-        console.log('Redis Namespace:', redis.namespace);
-        console.log('Redis TTL (ms):', redis.ttlMs);
-
         const store = await redisStore({
           host: redisUrl.hostname,
           port: Number(redisUrl.port || 6379),

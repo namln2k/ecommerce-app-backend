@@ -1,0 +1,7 @@
+$kind: http-request
+name: Search
+url: "{{BaseUrl}}/products/search?q=backpack"
+method: GET
+queryParams:
+  q: backpack
+order: 442250681123717

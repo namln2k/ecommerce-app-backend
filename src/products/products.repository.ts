@@ -45,7 +45,7 @@ export class ProductsRepository {
   }
 
   findBySku(sku: string): Promise<Product | null> {
-    return this.repository.findOne({ where: { sku } });
+    return this.repository.findOne({ where: { sku }, relations: { stockItems: true } });
   }
 
   save(product: Product): Promise<Product> {
