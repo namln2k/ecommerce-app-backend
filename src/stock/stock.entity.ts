@@ -1,4 +1,5 @@
 import {
+  Check,
   Column,
   CreateDateColumn,
   Entity,
@@ -12,6 +13,7 @@ import { Product } from '../products/product.entity';
 
 @Entity({ name: 'stock' })
 @Index(['productId', 'warehouseCode'], { unique: true })
+@Check('CHK_stock_quantity_non_negative', '"quantity" >= 0')
 export class Stock {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
