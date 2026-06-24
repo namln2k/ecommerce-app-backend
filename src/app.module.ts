@@ -14,16 +14,18 @@ import { ProductsModule } from './products/products.module';
 import { OrdersModule } from './orders/orders.module';
 import { StockModule } from './stock/stock.module';
 import databaseConfig from './config/database.config';
+import kafkaConfig from './config/kafka.config';
 import jwtConfig from './config/jwt.config';
 import redisConfig from './config/redis.config';
 import { AuthModule } from './auth/auth.module';
+import { KafkaModule } from './kafka/kafka.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       validate,
-      load: [databaseConfig, jwtConfig, redisConfig],
+      load: [databaseConfig, jwtConfig, redisConfig, kafkaConfig],
       envFilePath: [`.env.${process.env.NODE_ENV}`, '.env'],
     }),
     CacheModule.registerAsync({
@@ -64,6 +66,7 @@ import { AuthModule } from './auth/auth.module';
     }),
     UsersModule,
     AuthModule,
+    KafkaModule,
     ProductsModule,
     StockModule,
     OrdersModule,

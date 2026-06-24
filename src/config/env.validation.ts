@@ -45,6 +45,14 @@ class EnvironmentVariables {
   @Min(1)
   @IsOptional()
   REDIS_CACHE_TTL_MS?: number;
+
+  @IsString()
+  @IsOptional()
+  KAFKA_BROKERS?: string;
+
+  @IsString()
+  @IsOptional()
+  KAFKA_CLIENT_ID?: string;
 }
 
 export function validate(config: Record<string, unknown>) {
