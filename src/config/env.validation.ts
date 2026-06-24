@@ -36,6 +36,15 @@ class EnvironmentVariables {
   @IsString()
   @IsOptional()
   REDIS_URL?: string;
+
+  @IsString()
+  @IsOptional()
+  REDIS_CACHE_NAMESPACE?: string;
+
+  @IsInt()
+  @Min(1)
+  @IsOptional()
+  REDIS_CACHE_TTL_MS?: number;
 }
 
 export function validate(config: Record<string, unknown>) {

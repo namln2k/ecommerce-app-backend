@@ -88,7 +88,7 @@ services:
       - zookeeper_data:/var/lib/zookeeper/data
       - zookeeper_log:/var/lib/zookeeper/log
     healthcheck:
-      test: ['CMD-SHELL', "bash -c 'exec 3<>/dev/tcp/127.0.0.1/2181'"]
+      test: ['CMD-SHELL', 'echo srvr | nc -w 2 127.0.0.1 2181 | grep "Mode:"']
       interval: 10s
       timeout: 5s
       retries: 5
