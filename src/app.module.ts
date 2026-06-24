@@ -4,8 +4,9 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { validate } from './config/env.validation';
 import { UsersModule } from './users/users.module';
-import { ResourcesModule } from './resources/resources.module';
-import { BookingsModule } from './bookings/bookings.module';
+import { ProductsModule } from './products/products.module';
+import { OrdersModule } from './orders/orders.module';
+import { StockModule } from './stock/stock.module';
 import databaseConfig from './config/database.config';
 import jwtConfig from './config/jwt.config';
 
@@ -18,8 +19,9 @@ import jwtConfig from './config/jwt.config';
       envFilePath: [`.env.${process.env.NODE_ENV}`, '.env'],
     }),
     UsersModule,
-    ResourcesModule,
-    BookingsModule,
+    ProductsModule,
+    StockModule,
+    OrdersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
