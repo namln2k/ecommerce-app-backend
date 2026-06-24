@@ -24,6 +24,7 @@ export class StockRepository {
         warehouseCode: 'stock.warehouseCode',
         warehouseName: 'stock.warehouseName',
         quantity: 'stock.quantity',
+        reservedQuantity: 'stock.reservedQuantity',
         createdAt: 'stock.createdAt',
         updatedAt: 'stock.updatedAt',
       },
@@ -33,6 +34,7 @@ export class StockRepository {
         warehouseCode: { column: 'stock.warehouseCode', type: 'string' },
         warehouseName: { column: 'stock.warehouseName', type: 'string' },
         quantity: { column: 'stock.quantity', type: 'number' },
+        reservedQuantity: { column: 'stock.reservedQuantity', type: 'number' },
       },
       searchFields: ['stock.warehouseCode', 'stock.warehouseName', 'product.name', 'product.sku'],
     });

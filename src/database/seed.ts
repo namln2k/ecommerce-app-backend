@@ -47,15 +47,16 @@ async function seed(): Promise<void> {
 
       await manager.query(
         `
-          INSERT INTO "stock" ("product_id", "warehouse_code", "warehouse_name", "quantity")
+          INSERT INTO "stock" ("product_id", "warehouse_code", "warehouse_name", "quantity", "reserved_quantity")
           VALUES
-            ($1, $2, $3, $4),
-            ($5, $6, $7, $8),
-            ($9, $10, $11, $12)
+            ($1, $2, $3, $4, $5),
+            ($6, $7, $8, $9, $10),
+            ($11, $12, $13, $14, $15)
           ON CONFLICT ("product_id", "warehouse_code") DO UPDATE
           SET
             "warehouse_name" = EXCLUDED."warehouse_name",
             "quantity" = EXCLUDED."quantity",
+            "reserved_quantity" = EXCLUDED."reserved_quantity",
             "updated_at" = now()
         `,
         [
@@ -63,14 +64,17 @@ async function seed(): Promise<void> {
           'HN-01',
           'Hanoi Warehouse',
           25,
+          0,
           '22222222-2222-2222-2222-222222222222',
           'HCM-01',
           'Ho Chi Minh Warehouse',
           40,
+          0,
           '33333333-3333-3333-3333-333333333333',
           'HN-01',
           'Hanoi Warehouse',
           75,
+          0,
         ],
       );
 

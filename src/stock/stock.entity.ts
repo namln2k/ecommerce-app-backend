@@ -14,6 +14,8 @@ import { Product } from '../products/product.entity';
 @Entity({ name: 'stock' })
 @Index(['productId', 'warehouseCode'], { unique: true })
 @Check('CHK_stock_quantity_non_negative', '"quantity" >= 0')
+@Check('CHK_stock_reserved_quantity_non_negative', '"reserved_quantity" >= 0')
+@Check('CHK_stock_reserved_quantity_lte_quantity', '"reserved_quantity" <= "quantity"')
 export class Stock {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
@@ -33,6 +35,9 @@ export class Stock {
 
   @Column({ type: 'integer', default: 0 })
   quantity!: number;
+
+  @Column({ name: 'reserved_quantity', type: 'integer', default: 0 })
+  reservedQuantity!: number;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;
